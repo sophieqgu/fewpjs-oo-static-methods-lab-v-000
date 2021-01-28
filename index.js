@@ -9,9 +9,18 @@ class Formatter {
   }
 
   static titleize(string) {
-    let exceptions = 
-    return string.split(" ").map( word => {
-      Formatter.capitalize(word)).join(" ");
+    let exceptions = [ 'the', 'a', 'an', 'but', 'of', 'and', 'for', 'at', 'by', 'from' ]
+    let array = string.split(" ");
+    let result = [];
+    for (let i = 0; i < array.length; i++) {
+      if (i == 0) {
+        result.push(this.capitalize(array[i]));
+      } else if (exceptions.includes(array[i])) {
+        result.push(array[i]);
+      } else {
+        result.push(this.capitalize(array[i]));
+      }
     }
+    return result.join(" ");
   }
 }
