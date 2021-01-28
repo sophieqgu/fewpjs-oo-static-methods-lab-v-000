@@ -5,6 +5,10 @@ class Formatter {
   }
 
   static sanitize(string) {
-    return string.replace(/[^A-Za-z0-9-']+/g, '');
+    return string.replace(/[^A-Za-z0-9-'/s]+/g, '');
+  }
+
+  static titleize(string) {
+    return string.split(" ").map( word => Formatter.capitalize(word)).join(" ");
   }
 }
