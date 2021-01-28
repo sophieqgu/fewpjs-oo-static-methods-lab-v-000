@@ -11,16 +11,14 @@ class Formatter {
   static titleize(string) {
     let exceptions = [ 'the', 'a', 'an', 'but', 'of', 'and', 'for', 'at', 'by', 'from' ]
     let array = string.split(" ");
-    let result = [];
-    for (let i = 0; i < array.length; i++) {
-      if (i == 0) {
-        result.push(this.capitalize(array[i]));
-      } else if (exceptions.includes(array[i])) {
-        result.push(array[i]);
+    array.unshift(this.capitalize(array.shift()));
+    let result = array.map( word => {
+      if (exceptions.includes(word)) {
+        return word;
       } else {
-        result.push(this.capitalize(array[i]));
+        return this.capitalize(word));
       }
-    }
+    });
     return result.join(" ");
   }
 }
